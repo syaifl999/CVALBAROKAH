@@ -1,10 +1,10 @@
-<li class="nav-item"><a class="nav-link" href="admin.php">Admin</a></li><?php
+<li class="nav-item"><a class="nav-link" href="admin.html">Admin</a></li><?php
 session_start();
 if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
   die("Akses ditolak. Hanya admin yang dapat menambahkan berita.");
 }
 
-include 'db.php';
+include 'db.html';
 
 $title = $_POST['title'];
 $content = $_POST['content'];
@@ -23,7 +23,7 @@ $stmt = $conn->prepare($sql);
 $stmt->bind_param("ssss", $title, $content, $image, $date);
 
 if ($stmt->execute()) {
-  header("Location: admin.php");
+  header("Location: admin.html");
 } else {
   echo "Gagal menambahkan berita: " . $conn->error;
 }
