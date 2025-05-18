@@ -1,80 +1,92 @@
 <?php
-// Koneksi ke database
-include 'db.php';
+session_start();
+$admin_password = "admin123"; // Ganti dengan password rahasia kamu
 
-// Ambil id artikel dari URL
-$id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
-
-// Ambil data artikel berdasarkan id
-$sql = "SELECT * FROM posts WHERE id = $id";
-$result = $conn->query($sql);
-
-if (!$result || $result->num_rows === 0) {
-  echo "Artikel tidak ditemukan.";
-  exit;
-}
-$post = $result->fetch_assoc();
+// Jika sudah login, tampilkan form
+if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === true):
 ?>
-
-<style>
-    .content-container {
-      display: flex;
-      flex-direction: column;
-    }
-    .back-link {
-      align-self: flex-end; /* Ini akan memposisikan elemen ke kanan */
-      margin-top: 20px;
-    }
-    .back-link a {
-      text-decoration: none;
-      color: #000000;
-      font-weight: bold;
-    }
-    .back-link a:hover {
-      text-decoration: underline;
-    }
-  </style>
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title><?= htmlspecialchars($post['title']) ?></title>
-  <link rel="stylesheet" href="style.css">
+  <title>Admin - Tambah Berita</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    .form-container {
+      max-width: 700px;
+      margin: 50px auto;
+      padding: 30px;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <h1><?= htmlspecialchars($post['title']) ?></h1>
-    <p class="date"><?= date('d M Y', strtotime($post['date'])) ?></p>
-    <?php if (!empty($post['image'])): ?>
-      <img src="uploads/<?= htmlspecialchars($post['image']) ?>" alt="<?= htmlspecialchars($post['title']) ?>" class="blog-image">
-    <?php endif ?>
-    <div class="content-container">
-      <div class="content">
-        <?= formatLongText($post['content'] ?? 'No content available') ?>
+  <div class="form-container">
+    <h2>Tambah Berita Baru</h2>
+    <form action="tambah_artikel.php" method="post" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="title">Judul Berita</label>
+        <input type="text" name="title" class="form-control" required>
       </div>
-      <div class="back-link">
-        <a href="index.php">&larr; Kembali ke halaman</a>
+      <div class="form-group">
+        <label for="image">Gambar Berita</label>
+        <input type="file" name="image" class="form-control-file">
       </div>
-    </div>
+      <div class="form-group">
+        <label for="content">Isi Berita</label>
+        <textarea name="content" rows="6" class="form-control" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary" style="background-color: #05a141; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Tambah Berita</button>
+      <a href="blog.php" class="btn btn-danger ml-2" style="background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Logout</a>
+    </form>
   </div>
 </body>
 </html>
 
 <?php
-function formatLongText($content) {
-    // 1. Escape karakter khusus
-    $content = htmlspecialchars($content, ENT_QUOTES, 'UTF-8');
-    
-    // 2. Potong teks yang terlalu panjang (misal: lebih dari 100 karakter tanpa spasi)
-    $content = preg_replace_callback('/(\S{100,})/', function($matches) {
-        return wordwrap($matches[1], 100, ' ', true);
-    }, $content);
-    
-    // 3. Format paragraf dan line breaks
-    $content = '<p>' . str_replace(["\n\n", "\n"], ['</p><p>', '<br>'], $content) . '</p>';
-    
-    // 4. Tambahkan overflow-wrap untuk kata panjang
-    return '<div style="overflow-wrap: break-word; word-wrap: break-word;">' . $content . '</div>';
-}
+else:
+  // Jika belum login, tampilkan form login
+  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if ($_POST['password'] === $admin_password) {
+      $_SESSION['is_admin'] = true;
+      header('Location: admin.php');
+      exit;
+    } else {
+      $error = "Password salah!";
+    }
+  }
 ?>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Login Admin</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    .login-form {
+      max-width: 400px;
+      margin: 100px auto;
+      padding: 30px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      background: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-form">
+    <h3 class="text-center">Login Admin</h3>
+    <?php if (!empty($error)): ?>
+      <div class="alert alert-danger"><?= $error ?></div>
+    <?php endif ?>
+    <form method="post">
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" name="password" class="form-control" required>
+      </div>
+      <button class="btn btn-primary btn-block" style="background-color: #05a141;">Login</button>
+    </form>
+  </div>
+</body>
+</html>
+<?php endif; ?>
