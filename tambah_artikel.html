@@ -1,37 +1,90 @@
-<!DOCTYPE html>
-<html>
-<head>...</head>
-<body>
-<li class="nav-item"><a class="nav-link" href="admin.html">Admin</a></li><?php
+<?php
 session_start();
 if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
   die("Akses ditolak. Hanya admin yang dapat menambahkan berita.");
 }
 
-include 'db.html';
+include 'db.php'; // Pastikan file ini ada dan ekstensi .php
 
-$title = $_POST['title'];
-$content = $_POST['content'];
-$date = date('Y-m-d');
+// Proses form jika ada data POST
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  $title = $_POST['title'];
+  $content = $_POST['content'];
+  $date = date('Y-m-d');
 
-// Upload gambar jika ada
-$image = '';
-if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
-  $target_dir = "uploads/";
-  $image = basename($_FILES["image"]["name"]);
-  move_uploaded_file($_FILES["image"]["tmp_name"], $target_dir . $image);
-}
+  // Upload gambar jika ada
+  $image = '';
+  if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
+    $target_dir = "uploads/";
+    // Pastikan folder uploads ada dan bisa ditulisi
+    if (!file_exists($target_dir)) {
+      mkdir($target_dir, 0755, true);
+    }
+    
+    $image_name = basename($_FILES["image"]["name"]);
+    $target_file = $target_dir . $image_name;
+    
+    // Validasi file upload
+    $allowed_types = ['image/jpeg', 'image/png', 'image/gif'];
+    $file_type = $_FILES['image']['type'];
+    
+    if (in_array($file_type, $allowed_types)) {
+      if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+        $image = $image_name;
+      }
+    }
+  }
 
-$sql = "INSERT INTO posts (title, content, image, date) VALUES (?, ?, ?, ?)";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("ssss", $title, $content, $image, $date);
+  // Insert ke database
+  $sql = "INSERT INTO posts (title, content, image, date) VALUES (?, ?, ?, ?)";
+  $stmt = $conn->prepare($sql);
+  $stmt->bind_param("ssss", $title, $content, $image, $date);
 
-if ($stmt->execute()) {
-  header("Location: admin.html");
-} else {
-  echo "Gagal menambahkan berita: " . $conn->error;
+  if ($stmt->execute()) {
+    header("Location: admin.php");
+    exit();
+  } else {
+    $error = "Gagal menambahkan berita: " . $conn->error;
+  }
 }
 ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Panel</title>
+  <!-- Tambahkan CSS Anda di sini -->
+</head>
+<body>
+  <nav>
+    <ul>
+      <li class="nav-item"><a class="nav-link" href="admin.php">Admin</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <?php if (isset($error)): ?>
+      <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
+    <?php endif; ?>
+
+    <form method="post" action="admin.php" enctype="multipart/form-data">
+      <div>
+        <label for="title">Judul:</label>
+        <input type="text" id="title" name="title" required>
+      </div>
+      
+      <div>
+        <label for="content">Konten:</label>
+        <textarea id="content" name="content" required></textarea>
+      </div>
+      
+      <div>
+        <label for="image">Gambar:</label>
+        <input type="file" id="image" name="image">
+      </div>
+      
+      <button type="submit">Simpan Berita</button>
+    </form>
+  </main>
 </body>
 </html>
-
