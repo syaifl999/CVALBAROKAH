@@ -1,0 +1,92 @@
+<?php
+session_start();
+$admin_password = "admin123"; // Ganti dengan password rahasia kamu
+
+// Jika sudah login, tampilkan form
+if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === true):
+?>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin - Tambah Berita</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    .form-container {
+      max-width: 700px;
+      margin: 50px auto;
+      padding: 30px;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Tambah Berita Baru</h2>
+    <form action="tambah_artikel.php" method="post" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="title">Judul Berita</label>
+        <input type="text" name="title" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="image">Gambar Berita</label>
+        <input type="file" name="image" class="form-control-file">
+      </div>
+      <div class="form-group">
+        <label for="content">Isi Berita</label>
+        <textarea name="content" rows="6" class="form-control" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary" style="background-color: #05a141; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Tambah Berita</button>
+      <a href="blog.php" class="btn btn-danger ml-2" style="background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Logout</a>
+    </form>
+  </div>
+</body>
+</html>
+
+<?php
+else:
+  // Jika belum login, tampilkan form login
+  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if ($_POST['password'] === $admin_password) {
+      $_SESSION['is_admin'] = true;
+      header('Location: admin.php');
+      exit;
+    } else {
+      $error = "Password salah!";
+    }
+  }
+?>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Login Admin</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    .login-form {
+      max-width: 400px;
+      margin: 100px auto;
+      padding: 30px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      background: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-form">
+    <h3 class="text-center">Login Admin</h3>
+    <?php if (!empty($error)): ?>
+      <div class="alert alert-danger"><?= $error ?></div>
+    <?php endif ?>
+    <form method="post">
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" name="password" class="form-control" required>
+      </div>
+      <button class="btn btn-primary btn-block" style="background-color: #05a141;">Login</button>
+    </form>
+  </div>
+</body>
+</html>
+<?php endif; ?>

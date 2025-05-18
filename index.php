@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Al Barokah Herbal Makassar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Tambahkan ini di bagian <head> untuk Bootstrap -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Navbar -->
+<style>
+    .navbar-brand {
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  font-size: 1rem; /* lebih kecil agar proporsional di HP */
+  white-space: nowrap;
+}
+
+.navbar-brand img {
+  height: 40px; /* ukuran logo disesuaikan untuk HP */
+  margin-right: 10px;
+}
+
+.navbar-brand h4 {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.navbar-nav .nav-item {
+  margin-right: 10px;
+}
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+@media (max-width: 576px) {
+  .navbar-brand h4 {
+    font-size: 0.9rem;
+  }
+
+  .navbar-nav .nav-link {
+    font-size: 0.9rem;
+    text-align: center;
+  }
+
+  .navbar-brand img {
+    height: 35px;
+    margin-right: 6px;
+  }
+
+  .hero-text h1 {
+    font-size: 1.5rem;
+  }
+
+  .hero-text h5 {
+    font-size: 0.9rem;
+    padding: 0 10px;
+  }
+   
+}
+
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #05a141;">
+  <div class="container">
+    <!-- Logo dan Nama Brand -->
+    <a class="navbar-brand d-flex align-items-center" href="#">
+      <img src="logo.png" alt="Logo Al Barokah" class="logo">  <!-- Ganti dengan path logo kamu -->
+      <span class="ml-2 font-weight-bold">CV Al Barokah Herbal Makassar</span>
+    </a>
+
+    <!-- Tombol menu mobile -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent"
+      aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Daftar Menu -->
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Beranda</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="profil.php">Profil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#produk">Produk</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#tentang">Tentang Kami</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#kontak">Kontak</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="blog.php">Publikasi</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<section style="position: relative; overflow: hidden; height: 80vh;">
+  <!-- Slider Background -->
+  <div id="slider" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0;">
+    <img src="tes1.jpg" style="width: 100%; height: 100%; object-fit: cover; position: absolute; transition: opacity 1s; opacity: 1;">
+    <img src="tes2.jpg" style="width: 100%; height: 100%; object-fit: cover; position: absolute; transition: opacity 1s; opacity: 0;">
+    <img src="tes3.jpg" style="width: 100%; height: 100%; object-fit: cover; position: absolute; transition: opacity 1s; opacity: 0;">
+  </div>
+
+  <!-- Overlay dan Teks -->
+  <div class="hero" style="background-color: rgba(144, 238, 144, 0.0); height: 100%; width: 100%; position: relative; z-index: 1;">
+  <div class="hero-text" style="color: white; text-align: center; padding-top: 20vh;">
+    <h1 style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);"><b>Solusi Herbal Kesehatan Anda</b></h1>
+    <h5 style="color: white; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);">
+      Menawarkan produk herbal alami terbaik untuk menjaga kesehatan Anda secara alami dan menyeluruh.
+    </h5>
+  </div>
+</div>
+
+</section>
+
+<script>
+  const images = document.querySelectorAll('#slider img');
+  let current = 0;
+
+  setInterval(() => {
+    images[current].style.opacity = 0;
+    current = (current + 1) % images.length;
+    images[current].style.opacity = 1;
+  }, 4000); // Ganti setiap 4 detik
+</script>
+
+
+
+<section class="section" id="produk">
+  <h2 class="text-center" style="color: #000000;">Produk Unggulan</h2>
+  <h5>Diformulasikan Alami, Teruji Membantu Atasi Keluhan Anda!</h5>
+  <div class="product-wrapper">
+  <div class="product-card">
+    <div class="product-content">
+      <img src="8.jpg" alt="Herbal A">
+      <h3 style="color: #ffffff;">Minyak Urut Fito Herbal Bidara</h3>
+      <a href="detail-herbal-a.html">
+      <button class="detail-button" style="background-color: #05a141; color: white; border: none; padding: 8px 20px; border-radius: 5px; cursor: pointer; transition: background-color 0.3s;">Lihat Detail</button>
+    </a>
+    </div>
+  </div>
+
+  <div class="product-card">
+    <div class="product-content">
+      <img src="9.jpg" alt="Herbal B">
+      <h3 style="color: #ffffff;">Minyak Telon Bidara Uwais</h3>
+      <a href="detail-herbal-b.html">
+      <button class="detail-button" style="background-color: #05a141; color: white; border: none; padding: 8px 20px; border-radius: 5px; cursor: pointer; transition: background-color 0.3s;">Lihat Detail</button>
+    </a>
+    </div>
+  </div>
+
+    <div class="product-card">
+    <div class="product-content">
+      <img src="10.jpg" alt="Herbal C">
+      <h3 style="color: #ffffff;">Minyak Natural Mamiri Oil</h3>
+      <a href="detail-herbal-c.html">
+      <button class="detail-button" style="background-color: #05a141; color: white; border: none; padding: 8px 20px; border-radius: 5px; cursor: pointer; transition: background-color 0.3s;">Lihat Detail</button>
+    </a>
+    </div>
+  </div>
+
+<div class="product-card">
+    <div class="product-content">
+      <img src="11.jpg" alt="Herbal D">
+      <h3 style="color: #ffffff;">Alesha Tream Oil</h3>
+      <a href="detail-herbal-d.html">
+      <button class="detail-button" style="background-color: #05a141; color: white; border: none; padding: 8px 20px; border-radius: 5px; cursor: pointer; transition: background-color 0.3s;">Lihat Detail</button>
+    </a>
+    </div>
+  </div>
+
+  </div>
+</section>
+
+<style>
+  .testimoni-section {
+    background-color: #ffffff;
+    padding: 40px 20px;
+    text-align: center;
+  }
+
+  .testimoni-section h2 {
+    font-size: 2rem;
+    color: #008000;
+    margin-bottom: 20px;
+    font-family: 'Arial', sans-serif;
+  }
+
+  .testimoni-section h5 {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 30px;
+    font-weight: normal;
+  }
+
+  /* Slider Responsif */
+  .slider {
+    width: 13%;
+    max-width: 800px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 12px;
+    position: relative;
+  }
+
+  .slides {
+    display: flex;
+    width: 300%;
+    transition: transform 0.5s ease;
+  }
+
+  .slides img {
+    width: 33.33%;
+    flex-shrink: 0;
+    object-fit: contain;
+    border-radius: 8px;
+    padding: 0 10px;
+    box-sizing: border-box;
+  }
+
+  /* Arrows */
+  .slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    font-size: 20px;
+  }
+
+  .left-arrow {
+    left: 5px;
+  }
+
+  .right-arrow {
+    right: 5px;
+  }
+
+  /* Responsive Breakpoints */
+  @media (max-width: 768px) {
+    .testimoni-section {
+      padding: 30px 15px;
+    }
+    
+    .testimoni-section h2 {
+      font-size: 1.5rem;
+    }
+    
+    .testimoni-section h5 {
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
+    
+    .slider {
+      width: 95%;
+    }
+    
+    .slider-arrow {
+      width: 30px;
+      height: 30px;
+      font-size: 16px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .slides img {
+      padding: 0 5px;
+    }
+  }
+</style>
+
+<section id="testimoni" class="testimoni-section">
+  <h5>Apa Kata Pelanggan Kami Tentang Produk Kami?</h5>
+  
+  <!-- Slider Gambar -->
+  <div class="slider">
+    <div class="slides">
+      <img src="16.jpg" alt="Testimoni 1">
+      <img src="17.jpg" alt="Testimoni 2">
+      <img src="18.jpg" alt="Testimoni 3">
+      <img src="19.jpg" alt="Testimoni 4">
+      <img src="20.jpg" alt="Testimoni 5">
+      <img src="21.jpg" alt="Testimoni 6">
+      <img src="22.jpg" alt="Testimoni 7">
+      <img src="23.jpg" alt="Testimoni 8">
+      <img src="24.jpg" alt="Testimoni 9">
+      <img src="25.jpg" alt="Testimoni 10">
+      <img src="26.jpg" alt="Testimoni 11">
+      <img src="27.jpg" alt="Testimoni 12">
+      <img src="28.jpg" alt="Testimoni 13">
+      <img src="29.jpg" alt="Testimoni 14">
+    </div>
+    <div class="slider-arrow left-arrow" onclick="moveSlide(-1)">&#10094;</div>
+    <div class="slider-arrow right-arrow" onclick="moveSlide(1)">&#10095;</div>
+  </div>
+</section>
+
+<script>
+  let currentSlide = 0;
+  const slides = document.querySelector('.slides');
+  const totalSlides = document.querySelectorAll('.slides img').length;
+
+  function moveSlide(direction) {
+    currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+    slides.style.transform = `translateX(-${currentSlide * 33.33}%)`;
+  }
+
+  // Auto slide (opsional)
+  setInterval(() => {
+    moveSlide(1);
+  }, 5000);
+</script>
+
+
+<style>
+  #tentang {
+  padding: 40px 20px;
+  background-color: #f9f9f9;
+}
+
+.tentang-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 30px;
+}
+
+.tentang-gambar {
+  flex: 1;
+  min-width: 280px;
+}
+
+.tentang-gambar img {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.tentang-teks {
+  flex: 2;
+  min-width: 300px;
+}
+
+.tentang-teks h2 {
+  color: #007033;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.tentang-teks h4 {
+  margin-top: 20px;
+  font-size: 20px;
+  color: #333;
+}
+
+.tentang-teks p {
+  line-height: 1.6;
+  color: #444;
+}
+.tentang-wrapper {
+  display: flex;
+  align-items: center; /* Ini untuk menyeimbangkan gambar secara vertikal */
+  gap: 20px; /* Jarak antara gambar dan teks */
+  flex-wrap: wrap; /* Agar responsif di layar kecil */
+  padding: 20px;
+}
+
+.tentang-gambar img {
+  max-width: 87%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+</style>
+<section class="section" id="tentang">
+  <div class="tentang-wrapper">
+    <!-- Gambar di sebelah kiri -->
+    <div class="tentang-gambar">
+      <img src="cv.jpg" alt="CV Albarokah" />
+    </div>
+
+    <!-- Teks di sebelah kanan -->
+    <div class="tentang-teks">
+      <h2 class="text-center" style="color: #000000;">Tentang Kami</h2>
+      <h4>Sekilas Tentang CV Albarokah Herbal</h4>
+      <p style="text-align: justify;">CV AL BAROKAH HERBAL Berdiri di Makassar (Kota Daeng) Sulawesi Selatan pada tanggal 1 Desember 2019. Adalah perusahaan yang bergerak di industry obat tradisional husus nya saat ini memproduksi produk herbal cairan obat Luar dan obat dalam. CV Al Barokah Herbal berkomitmen menghasilkan produk-produk herbal yang aman dan berkualitas sesuai dengan standar CPOBT BPOM RI. Saat ini CV Al Barokah Herbal telah memiliki Sertifikat CPOBT BPOM RI (Cara Pembuatan Obat Tradisional Yang Baik) dan juga telah memiliki Sertifikat ijin Halal MUI.</p>
+      <h4>Kepercayaan Pelanggan & Produk Unggulan Kami</h4>
+      <p style="text-align: justify;">Didukung oleh tim ahli dan sistem produksi terintegrasi, CV Albarokah Herbal telah melayani puluhan mitra dengan ratusan unit penjualan produk setiap bulan. Produk unggulan kami mencakup minyak herbal oles. Kepercayaan pelanggan menjadi bukti nyata bahwa kualitas dan layanan adalah nilai utama yang kami junjung tinggi.</p>
+
+      <!-- Tambahan video -->
+      <div style="margin-top: 20px;">
+        <iframe width="100%" height="315" src="https://www.youtube.com/embed/jQJlkXwdtJM" title="Video Tentang Kami" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<div class="section" id="tentang">
+  <style>
+    .section {
+      padding: 40px;
+      font-family: Arial, sans-serif;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .kontak-container {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+
+    .kontak-item {
+      text-align: center;
+      max-width: 300px;
+    }
+
+    .icon-circle img {
+      width: 70px;
+      height: 70px;
+    }
+  </style>
+
+  <h2 class="text-center" id="kontak" style="color: #000000;">Kontak</h2>
+  <h5 class="text-center">
+    Kami siap membantu kebutuhan herbal Anda. Silakan hubungi kami.
+  </h5>
+
+  <div class="kontak-container">
+    <div class="kontak-item">
+      <div class="icon-circle">
+        <img src="1.png" alt="Email" />
+      </div>   <p></p>
+      <div class="text-center">albarokahherbal30@gmail.com</div>
+    </div>
+
+    <div class="kontak-item">
+      <div class="icon-circle">
+        <img src="2.png" alt="Telepon" />
+      </div>   <p></p>
+      <div class="text-center">0853 4398 3012</div>
+    </div>
+
+    <div class="kontak-item">
+      <div class="icon-circle">
+        <img src="3.png" alt="Alamat" />
+      </div>   <p></p>
+      <div class="text-center">
+        Jl. Barru Raya Blok D No.
+        316/B,<p>Kec Biringkanaya, Makassar
+      </div>
+    </div>
+  </div>
+
+  <!-- Add this right after the kontak-container div -->
+<div class="map-container" style="margin: 40px auto; max-width: 1000px; padding: 0 20px;">
+    <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3973.715002245529!2d119.483479!3d-5.148722999999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dbefc5b5f8d8e3d%3A0x1c3a1a5b0a5a5a5a!2sJl.%20Barru%20Raya%20Blok%20D%20No.%20316%2FB%2C%20Kec.%20Biringkanaya%2C%20Kota%20Makassar%2C%20Sulawesi%20Selatan%2090244!5e0!3m2!1sen!2sid!4v1620000000000!5m2!1sen!2sid" 
+        width="100%" 
+        height="450" 
+        style="border:0; border-radius: 8px;" 
+        allowfullscreen="" 
+        loading="lazy">
+    </iframe>
+</div>
+
+</div>
+
+<footer style="background-color: #05a141; color: white; padding: 20px; text-align: center;">
+  <p style="margin: 0; font-size: 1rem;">&copy; Al Barokah Herbal Makassar</p>
+</footer>
+
+</body>
+</html>

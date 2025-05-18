@@ -1,0 +1,195 @@
+/* Reset dasar */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #fff;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* Header */
+header {
+  background-color: #0d6b34;
+  color: white;
+  padding: 30px 20px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+
+/* Hero Section */
+.hero {
+  background: url('https://albarokahherbalmakassar.co.id/wp-content/uploads/2023/06/slider2.jpg') no-repeat center center/cover;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  position: relative;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, .4);
+}
+
+.hero h1 {
+  position: relative;
+  font-size: 48px;
+  padding: 20px 30px;
+  border-radius: 10px;
+  z-index: 1;
+  font-weight: 600;
+}
+
+/* Section Umum */
+.section {
+  padding: 60px 20px;
+  text-align: center;
+  background-color: #f8f9fa;
+}
+
+.section:nth-child(even) {
+  background-color: #ffffff;
+}
+
+.section h2 {
+  font-size: 32px;
+  margin-bottom: 20px;
+  color: #0d6b34;
+  font-weight: 600;
+}
+
+/* Wrapper untuk banyak produk */
+.product-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Kartu produk dengan background */
+.product-card {
+  position: relative;
+  width: 320px;
+  height: 320px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-7px);
+}
+
+/* Konten di atas background */
+.product-content {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent 80%);
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+}
+
+/* Gambar produk */
+.product-content img {
+  width: 80%;
+  height: auto;
+  border-radius: 8px; /* Menurunkan radius untuk kesan lebih kecil */
+  margin-bottom: 10px; /* Mengurangi margin bawah */
+  border: 2px solid #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Bayangan tetap halus */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-content img:hover {
+  transform: scale(1.03); /* Zoom lebih kecil saat hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Judul */
+.product-content h3 {
+  font-size: 18px; /* Memperkecil ukuran font */
+  color: #d9ffea; 
+  margin-bottom: 8px; /* Mengurangi margin bawah */
+  font-family: 'Arial', sans-serif;
+  text-transform: capitalize;
+  font-weight: 600; /* Mengurangi ketebalan font agar tidak terlalu tebal */
+}
+
+/* Tombol */
+.product-content button {
+  background-color: #0d6b34;
+  color: white;
+  border: none;
+  padding: 8px 16px; /* Memperkecil padding tombol */
+  border-radius: 6px; /* Menurunkan radius border */
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  font-size: 0.9rem; /* Menurunkan ukuran font tombol */
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* Bayangan tombol lebih halus */
+}
+
+.product-content button:hover {
+  background-color: #0b592c;
+  transform: translateY(-2px); /* Mengurangi efek tombol naik */
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+}
+
+.product-content button:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer */
+footer {
+  background-color: #0d6b34;
+  color: white;
+  text-align: center;
+  padding: 25px 20px;
+  font-size: 14px;
+  margin-top: 60px;
+}
+
+/* Responsif tambahan */
+@media (max-width: 600px) {
+  .hero h1 {
+    font-size: 28px;
+    padding: 15px;
+  }
+
+  nav {
+    gap: 15px;
+  }
+
+  .section h2 {
+    font-size: 24px;
+  }
+
+  .product h3 {
+    font-size: 18px;
+  }
+
+  .product-wrapper {
+    flex-direction: column;
+  }
+
+  .product-card {
+    width: 100%;
+    height: auto;
+  }
+}
