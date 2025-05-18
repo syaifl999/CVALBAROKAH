@@ -24,7 +24,7 @@ if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === true):
 <body>
   <div class="form-container">
     <h2>Tambah Berita Baru</h2>
-    <form action="tambah_artikel.php" method="post" enctype="multipart/form-data">
+    <form action="tambah_artikel.html" method="post" enctype="multipart/form-data">
       <div class="form-group">
         <label for="title">Judul Berita</label>
         <input type="text" name="title" class="form-control" required>
@@ -50,7 +50,7 @@ else:
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($_POST['password'] === $admin_password) {
       $_SESSION['is_admin'] = true;
-      header('Location: admin.php');
+      header('Location: admin.html');
       exit;
     } else {
       $error = "Password salah!";
