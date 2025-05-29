@@ -341,10 +341,33 @@
   </div>
 </section>
 
-<section class="container text-center">
-  <div class="navbar-brand d-flex justify-content-center">
-    <img src="tes10.jpg" class="img-fluid" style="max-width: 1810px; height: auto;">
+<section style="position: relative; overflow: hidden; height: 80vh; font-family: 'Segoe UI', sans-serif;">
+  <!-- Slider Background -->
+  <div id="slider" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0;">
+    <img src="tes9.jpg" style="width: 100%; height: 100%; object-fit: cover; position: absolute; transition: opacity 1s; opacity: 1;">
+    <img src="tes10.jpg" style="width: 100%; height: 100%; object-fit: cover; position: absolute; transition: opacity 1s; opacity: 0;">
+    <img src="tes11.jpg" style="width: 100%; height: 100%; object-fit: cover; position: absolute; transition: opacity 1s; opacity: 0;">
   </div>
+
+  <!-- Overlay dan Teks -->
+  <div class="" style="background-color: rgba(0, 0, 0, 0.4); height: 100%; width: 100%; position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 10px;">
+    <div class="hero-text" style="color: #fff; max-width: 800px; animation: fadeIn 2s ease-out;">
+      <h1 style="font-size: 3em; margin-bottom: 0.5em; text-shadow: 2px 2px 6px rgba(0,0,0,0.7); font-weight: bold;">
+        Solusi Herbal Kesehatan Anda
+      </h1>
+      <p style="font-size: 1.3em; line-height: 1.6; text-shadow: 1px 1px 4px rgba(0,0,0,0.6);">
+        Temukan kekuatan alami dalam setiap produk kami. Kami menghadirkan pilihan herbal berkualitas tinggi untuk mendukung kesehatan Anda secara holistik dan alami.
+      </p>
+    </div>
+  </div>
+
+  <!-- Optional: Tambahkan animasi CSS -->
+  <style>
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </section>
 
 <script>
