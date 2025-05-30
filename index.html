@@ -395,59 +395,6 @@
 </script>
 
 <style>
-  #slider {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-  }
-
-  #slider img.slide {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    position: absolute;
-    transition: opacity 1s ease;
-    opacity: 0;
-    z-index: 0;
-  }
-
-  #slider img.slide.active {
-    opacity: 1;
-    z-index: 1;
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-</style>
-
-<section style="position: relative; overflow: hidden; height: 80vh; font-family: 'Segoe UI', sans-serif;">
-  <div id="slider" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0;">
-    <img src="tes4.jpg" class="slide active">
-    <img src="tes5.jpg" class="slide">
-    <img src="tes6.jpg" class="slide">
-  </div>
-  </div>
-</section>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const slides = document.querySelectorAll("#slider .slide");
-    let current = 0;
-
-    setInterval(() => {
-      slides[current].classList.remove("active");
-      current = (current + 1) % slides.length;
-      slides[current].classList.add("active");
-    }, 4000);
-  });
-</script>
-</section>
-  
-<style>
   #tentang {
   padding: 40px 20px;
   background-color: #f9f9f9;
@@ -531,7 +478,58 @@
   </div>
 </section>
 
+<style>
+  #slider {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
 
+  #slider img.slide {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    transition: opacity 1s ease;
+    opacity: 0;
+    z-index: 0;
+  }
+
+  #slider img.slide.active {
+    opacity: 1;
+    z-index: 1;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+
+<section style="position: relative; overflow: hidden; height: 80vh; font-family: 'Segoe UI', sans-serif;">
+  <div id="slider" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0;">
+    <img src="tes4.jpg" class="slide active">
+    <img src="tes5.jpg" class="slide">
+    <img src="tes6.jpg" class="slide">
+  </div>
+  </div>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const slides = document.querySelectorAll("#slider .slide");
+    let current = 0;
+
+    setInterval(() => {
+      slides[current].classList.remove("active");
+      current = (current + 1) % slides.length;
+      slides[current].classList.add("active");
+    }, 4000);
+  });
+</script>
+</section>
+  
 <div class="sect" id="tentang">
   <style>
     .section {
