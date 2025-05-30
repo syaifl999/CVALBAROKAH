@@ -24,6 +24,43 @@
   border-radius: 30px;
   margin: 30px;
 }
+
+.sectio {
+  padding: 60px 20px;
+  background: linear-gradient(to right, ); /* gradient contoh */
+  border-radius: 30px;
+  margin: 30px;
+
+  display: flex;
+  justify-content: center; /* rata tengah horizontal */
+  align-items: center;     /* rata tengah vertikal */
+  flex-direction: column;  /* susun ke bawah */
+  text-align: center;      /* teks di tengah */
+  min-height: 300px;       /* tinggi minimum agar bisa vertikal */
+}
+
+.secti {
+  padding: 60px 20px;
+  background-image: url('tes7.jpg'); /* Ganti dengan nama file gambar atau URL */
+  background-size: cover;       /* agar gambar menutupi seluruh area */
+  background-position: center;  /* posisikan di tengah */
+  background-repeat: no-repeat; /* agar gambar tidak berulang */
+  border-radius: 30px;
+  margin: 30px;
+  color: #000000; /* pastikan teks terlihat jika gambar gelap */
+}
+
+.sect {
+  padding: 60px 20px;
+  background-image: url('tes12.jpg'); /* Ganti dengan nama file gambar atau URL */
+  background-size: cover;       /* agar gambar menutupi seluruh area */
+  background-position: center;  /* posisikan di tengah */
+  background-repeat: no-repeat; /* agar gambar tidak berulang */
+  border-radius: 30px;
+  margin: 30px;
+  color: #000000; /* pastikan teks terlihat jika gambar gelap */
+}
+
     .navbar-brand {
   font-weight: bold;
   display: flex;
@@ -163,7 +200,7 @@
 
 
 
-<section class="section" id="produk">
+<section class="secti" id="produk">
   <h2 class="text-center" style="color: #000000;">Produk Unggulan</h2>
   <h5>Diformulasikan Alami, Teruji Membantu Atasi Keluhan Anda!</h5>
   <div class="product-wrapper">
@@ -471,7 +508,7 @@
 }
 
 </style>
-<section class="section" id="tentang">
+<section class="sectio" id="tentang">
   <div class="tentang-wrapper">
     <!-- Gambar di sebelah kiri -->
     <div class="tentang-gambar">
@@ -495,7 +532,7 @@
 </section>
 
 
-<div class="section" id="tentang">
+<div class="sect" id="tentang">
   <style>
     .section {
       padding: 40px;
